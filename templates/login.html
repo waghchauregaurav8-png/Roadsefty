@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section" style="min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+    <div class="form-card" style="max-width: 400px; width: 100%;">
+        <div class="text-center" style="margin-bottom: 2rem;">
+            <h2 style="text-transform: uppercase; color: var(--color-red-danger);">System Admin</h2>
+            <p>Restricted Override Access</p>
+        </div>
+        
+        {% if error %}
+        <div class="alert-box alert-danger">{{ error }}</div>
+        {% endif %}
+        
+        <!-- The form action is intentionally left blank so it posts directly to /admin-login -->
+        <form method="POST">
+            <div class="form-group">
+                <label>Master Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; background: var(--color-red-danger); border-color: var(--color-red-danger);">AUTHORIZE</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="{{ url_for('user_login') }}" style="font-size: 0.85rem; color: var(--color-text-muted);">← Return to Public Portal</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

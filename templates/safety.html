@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    /* Custom Neobrutalist Image Card Styles */
+    .vehicle-card {
+        background: #FFFFFF; 
+        border: var(--border-thick); 
+        border-radius: var(--radius-md);
+        padding: 0; 
+        box-shadow: var(--shadow-hard); 
+        transition: var(--transition-snappy);
+        overflow: hidden; 
+        cursor: pointer; 
+        display: flex; 
+        flex-direction: column;
+    }
+    .vehicle-card:hover { 
+        transform: translate(-4px, -4px); 
+        box-shadow: var(--shadow-hard-hover); 
+    }
+    .vehicle-img {
+        width: 100%; 
+        height: 300px; 
+        object-fit: cover; 
+        border-bottom: var(--border-thick);
+    }
+    .vehicle-content { 
+        padding: 2.5rem; 
+        text-align: center; 
+    }
+    .click-prompt {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: var(--color-yellow-warning);
+        border: var(--border-thick);
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        box-shadow: 2px 2px 0px #111;
+        transition: var(--transition-snappy);
+    }
+    .rules-list {
+        display: none; 
+        text-align: left; 
+        margin-top: 2rem; 
+        padding-top: 1.5rem;
+        border-top: 3px dashed #111; 
+        font-weight: 600; 
+        line-height: 1.8;
+    }
+    .rules-list.active { 
+        display: block; 
+        animation: slideDown 0.3s ease-out; 
+    }
+    @keyframes slideDown { 
+        from { opacity: 0; transform: translateY(-10px); } 
+        to { opacity: 1; transform: translateY(0); } 
+    }
+    .marathi-text {
+        color: var(--color-blue-safety);
+        font-weight: 700;
+        display: block;
+        margin-bottom: 0.8rem;
+    }
+</style>
+
+<section class="page-header">
+    <div class="container">
+        <span class="section-tag">HANDBOOK</span>
+        <h1 class="page-title">HIGHWAY CODE</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container guide-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+        
+        <!-- 4 Wheeler Card -->
+        <div class="vehicle-card" onclick="toggleRules('fourWheelerRules')">
+            <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80" alt="4-Wheeler Car" class="vehicle-img">
+            <div class="vehicle-content">
+                <h3>🚗 4-Wheeler Directives</h3>
+                <span class="click-prompt">[+] CLICK FOR RULES</span>
+                
+                <div id="fourWheelerRules" class="rules-list">
+                    <ul style="margin-left: 1.5rem;">
+                        <li>
+                            Always engage 3-point harness restraints (Seatbelts) before starting the engine.
+                            <span class="marathi-text">(इंजिन सुरू करण्यापूर्वी नेहमी सीटबेल्ट लावा.)</span>
+                        </li>
+                        <li>
+                            Never exceed posted maximum speed limits on highways or city roads.
+                            <span class="marathi-text">(हायवे किंवा शहरातील रस्त्यांवर नेमून दिलेल्या वेगमर्यादेचे नेहमी पालन करा.)</span>
+                        </li>
+                        <li>
+                            Maintain a safe following distance of at least 3 seconds to avoid rear-end collisions.
+                            <span class="marathi-text">(समोरील वाहनापासून किमान ३ सेकंदांचे सुरक्षित अंतर ठेवा जेणेकरून अपघात टळेल.)</span>
+                        </li>
+                        <li>
+                            Do not operate mobile devices, text, or use touchscreens while the vehicle is in motion.
+                            <span class="marathi-text">(वाहन चालवताना मोबाईल फोनवर बोलू नका किंवा मेसेज करू नका.)</span>
+                        </li>
+                        <li>
+                            Ensure all mirrors (rear and side) are calibrated before accelerating.
+                            <span class="marathi-text">(प्रवास सुरू करण्यापूर्वी सर्व आरसे योग्यरित्या सेट केले असल्याची खात्री करा.)</span>
+                        </li>
+                        <li>
+                            Always use turn signals before changing lanes or making a turn.
+                            <span class="marathi-text">(लेन बदलण्यापूर्वी किंवा वळण घेण्यापूर्वी नेहमी इंडिकेटरचा वापर करा.)</span>
+                        </li>
+                        <li>
+                            Never drink and drive; strict legal action will be taken under traffic laws.
+                            <span class="marathi-text">(दारू पिऊन गाडी चालवू नका; यामुळे तुमच्यावर कडक कायदेशीर कारवाई होऊ शकते.)</span>
+                        </li>
+                        <li>
+                            Give way to emergency vehicles like ambulances and fire engines immediately.
+                            <span class="marathi-text">(रुग्णवाहिका आणि अग्निशमन दलासारख्या आपत्कालीन वाहनांना त्वरित रस्ता द्या.)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 Wheeler Card -->
+        <div class="vehicle-card" onclick="toggleRules('twoWheelerRules')">
+            <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80" alt="2-Wheeler Motorcycle" class="vehicle-img">
+            <div class="vehicle-content">
+                <h3>🏍️ 2-Wheeler Protocol</h3>
+                <span class="click-prompt">[+] CLICK FOR RULES</span>
+                
+                <div id="twoWheelerRules" class="rules-list">
+                    <ul style="margin-left: 1.5rem;">
+                        <li>
+                            Mandatory ISI/DOT certified helmets must be worn by both rider and pillion passenger.
+                            <span class="marathi-text">(चालक आणि मागे बसणाऱ्या प्रवाशाने नेहमी आयएसआय (ISI) प्रमाणित हेल्मेट घालणे अनिवार्य आहे.)</span>
+                        </li>
+                        <li>
+                            Maintain strict lane discipline; avoid zig-zagging or blindside passing.
+                            <span class="marathi-text">(नेहमी लेनची शिस्त पाळा; वेडीवाकडी गाडी चालवू नका किंवा चुकीच्या बाजूने ओव्हरटेक करू नका.)</span>
+                        </li>
+                        <li>
+                            Engage high-visibility reflective gear during dusk and night operation.
+                            <span class="marathi-text">(संध्याकाळी आणि रात्रीच्या वेळी लांबून दिसणारे रिफ्लेक्टिव्ह कपडे किंवा जॅकेट वापरा.)</span>
+                        </li>
+                        <li>
+                            Always activate turn indicators at least 30 meters before executing a turn.
+                            <span class="marathi-text">(वळण घेण्यापूर्वी किमान ३० मीटर आधी इंडिकेटर चालू करा.)</span>
+                        </li>
+                        <li>
+                            Avoid sudden front braking on wet, sandy, or oily asphalt to prevent skidding.
+                            <span class="marathi-text">(ओल्या, वाळू असलेल्या किंवा तेलकट रस्त्यावर घसरण्यापासून वाचण्यासाठी अचानक पुढचा ब्रेक दाबू नका.)</span>
+                        </li>
+                        <li>
+                            Keep both hands on the handlebars and avoid carrying heavy or unbalanced loads.
+                            <span class="marathi-text">(दोन्ही हात हँडलवर ठेवा आणि गाडीवर जड किंवा असंतुलित ओझे वाहून नेऊ नका.)</span>
+                        </li>
+                        <li>
+                            Regularly check tire pressure and brakes before starting a long journey.
+                            <span class="marathi-text">(लांबच्या प्रवासाला जाण्यापूर्वी टायरमधील हवा आणि ब्रेक नेहमी तपासा.)</span>
+                        </li>
+                        <li>
+                            Watch out for opening car doors when riding near parked vehicles.
+                            <span class="marathi-text">(पार्क केलेल्या गाड्यांजवळून जाताना गाड्यांचे दरवाजे अचानक उघडले जाण्यापासून सावध राहा.)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function toggleRules(id) {
+        const rulesDiv = document.getElementById(id);
+        if (rulesDiv.classList.contains('active')) {
+            rulesDiv.classList.remove('active');
+        } else {
+            rulesDiv.classList.add('active');
+        }
+    }
+</script>
+{% endblock %}

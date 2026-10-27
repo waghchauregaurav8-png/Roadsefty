@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section" style="min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+    <div class="form-card" style="max-width: 400px; width: 100%;">
+        <div class="text-center" style="margin-bottom: 2rem;">
+            <h2 style="text-transform: uppercase;">Create Account</h2>
+            <p>Join the Community Radar</p>
+        </div>
+        
+        {% if error %}
+        <div class="alert-box alert-danger">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">SIGN UP</button>
+        </form>
+
+        <!-- NEW: Continue with Google Button (Visual Prototype) -->
+        <div style="text-align: center; margin: 1.5rem 0;">
+            <span style="background: #fff; padding: 0 10px; color: var(--color-text-muted); font-size: 0.85rem; font-weight: bold;">OR</span>
+            <hr style="margin-top: -10px; border: 0; border-top: 1px solid #ddd; z-index: -1;">
+        </div>
+
+        <a href="#" onclick="alert('Google Authentication backend setup is pending.'); return false;" class="btn btn-outline" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; background: #fff; color: #111; border: 2px solid #ddd; text-decoration: none; margin-bottom: 1rem;">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style="width: 20px;">
+            Continue with Google
+        </a>
+        
+        <div class="text-center mt-3">
+            <p>Already have an account? <a href="{{ url_for('user_login') }}" style="color: var(--color-blue-safety); font-weight: bold;">Login</a></p>
+        </div>
+    </div>
+</section>
+{% endblock %}

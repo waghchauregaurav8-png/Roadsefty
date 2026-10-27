@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Road Reality | Engineering Prototype{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="{{ url_for('home') }}" class="brand-logo">ROAD REALITY_</a>
+                <div class="nav-menu" id="navMenu">
+                    
+                    <!-- 1. SHOWS ONLY IF ADMIN IS LOGGED IN -->
+                    {% if session.get('admin_logged_in') %}
+                        <a href="{{ url_for('home') }}" class="nav-link">HOME</a>
+                        <a href="{{ url_for('dashboard') }}" class="nav-link" style="color: var(--color-blue-safety); font-weight: bold;">DATABASE</a>
+                        <a href="{{ url_for('admin_logout') }}" class="nav-link" style="color: var(--color-red-danger);">ADMIN LOGOUT</a>
+                        
+                    <!-- 2. SHOWS ONLY IF A REGULAR USER IS LOGGED IN -->
+                    {% elif session.get('user_id') %}
+                        <a href="{{ url_for('home') }}" class="nav-link">HOME</a>
+                        <a href="{{ url_for('safety') }}" class="nav-link">SAFETY</a>
+                        <a href="{{ url_for('quiz') }}" class="nav-link">EVALUATION</a>
+                        <a href="{{ url_for('report') }}" class="nav-link nav-cta">REPORT HAZARD</a>
+                        <a href="{{ url_for('user_logout') }}" class="nav-link" style="color: var(--color-red-danger);">LOGOUT</a>
+                        
+                    <!-- 3. SHOWS IF NOBODY IS LOGGED IN (Forces them to login/register) -->
+                    {% else %}
+                        <a href="{{ url_for('user_login') }}" class="nav-link">LOGIN</a>
+                        <a href="{{ url_for('register') }}" class="nav-link nav-cta">SIGN UP</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand-logo footer-brand" style="display:inline-block; margin-bottom:15px; color:#111;">ROAD REALITY_</div>
+                    <p class="footer-desc">A real-time infrastructure tracking and awareness prototype designed for the community.</p>
+                    <div class="academic-badge">Academic Project Submission<br>Amrutvahini College of Engineering</div>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home Dashboard</a></li>
+                        <li><a href="{{ url_for('report') }}">Report Terminal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="{{ url_for('safety') }}">Highway Code</a></li>
+                        <li><a href="{{ url_for('quiz') }}">Knowledge Eval</a></li>
+                        <li><a href="{{ url_for('emergency') }}">Emergency Protocols</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>System Status</h4>
+                    <p class="commitment-text">System Online. Tracking regional hazard logs and verifying community data in real-time.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Developed by Gaurav Vishnu Waghchaure.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="section-tag" style="background:var(--color-red-danger);">CITIZEN TERMINAL</span>
+        <h1 class="page-title">REPORT HAZARD</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="report-layout">
+            <div class="report-form-pane">
+                <div class="form-card">
+                    <form id="hazardReportForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="fullName" name="full_name" class="form-input" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-half">
+                                <label>Email Address *</label>
+                                <input type="email" id="emailAddress" name="email" class="form-input" required>
+                            </div>
+                            <div class="form-group col-half">
+                                <label>Mobile Number *</label>
+                                <input type="tel" id="mobileNumber" name="mobile" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-half">
+                                <label>Hazard Type *</label>
+                                <select id="hazardType" name="hazard_type" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="Pothole">Pothole</option>
+                                    <option value="Broken Traffic Signal">Broken Signal</option>
+                                    <option value="Accident-Prone Area">Accident Area</option>
+                                    <option value="Waterlogging">Waterlogging</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-half">
+                                <label>Severity Level *</label>
+                                <select id="severityLevel" name="severity" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                    <option value="Critical">Critical</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description *</label>
+                            <textarea id="hazardDescription" name="description" rows="3" class="form-input" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Photo</label>
+                            <input type="file" id="hazardPhoto" name="photo" accept="image/*" class="form-input" style="padding:0.7rem;">
+                        </div>
+
+                        <div class="gps-control-card">
+                            <label style="margin-bottom:1rem;">Location Verification</label>
+                            <button type="button" id="getGpsBtn" class="btn btn-outline btn-full">📍 ACQUIRE GPS FIX</button>
+                            <div id="gpsStatus" class="gps-status-indicator">NO GPS LOCKED.</div>
+                            <input type="hidden" id="latitude" name="latitude">
+                            <input type="hidden" id="longitude" name="longitude">
+                        </div>
+
+                        <button type="submit" id="submitReportBtn" class="btn btn-primary btn-full">[+] SUBMIT REPORT</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="report-map-pane">
+                <div class="map-sticky-wrapper">
+                    <label>LIVE GEO-CONFIRMATION MAP</label>
+                    <div id="reportMap" class="interactive-map mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

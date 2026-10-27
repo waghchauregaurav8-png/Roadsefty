@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero-section animated-bg">
+    <div class="hero-container">
+        <h1 class="hero-title">Report. Track. Resolve.</h1>
+        <p class="hero-description">An engineering prototype for crowdsourced infrastructure monitoring. Pinpoint hazards, test your knowledge, and track municipal repairs on a live decentralized map.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('report') }}" class="btn btn-primary-hero">[+] INITIALIZE REPORT</a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary-hero">VIEW DATABASE</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="section-tag">Essential Knowledge</span>
+            <h2 class="section-title">Core Principles</h2>
+        </div>
+        <div class="cards-grid">
+            <div class="feature-card text-center">
+                <div class="feature-icon">🚗</div>
+                <h3>Safe Driving</h3>
+                <p>Respect speed ceilings and drive defensively to reduce trauma by over 50%.</p>
+            </div>
+            <div class="feature-card text-center">
+                <div class="feature-icon">🚦</div>
+                <h3>Traffic Rules</h3>
+                <p>Traffic regulations maintain fluid intersections and protect pedestrians.</p>
+            </div>
+            <div class="feature-card text-center">
+                <div class="feature-icon">🛣️</div>
+                <h3>Better Roads</h3>
+                <p>Timely geo-tagging of sinkholes drives strict municipal accountability.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section stats-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title" style="color:#FFF;">Platform Benchmarks</h2>
+        </div>
+        <div class="cards-grid">
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Uptime Reporting</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">GPS</div>
+                <div class="stat-label">Verified Coordinates</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Community Driven</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEW: COMMUNITY RADAR & LIVE HAZARD MAP -->
+<section class="section">
+    <div class="container">
+        <div class="text-center" style="margin-bottom: 2rem;">
+            <span class="section-tag" style="background:var(--color-blue-safety);">COMMUNITY RADAR</span>
+            <h2 class="section-title">LIVE HAZARD MAP</h2>
+            <p class="section-subtitle">View reported infrastructure issues across Sangamner and verify them to alert authorities faster.</p>
+        </div>
+        <div class="dashboard-map-wrapper">
+            <!-- This is where the public map will load -->
+            <div id="publicMap" class="interactive-map" style="height: 500px; width: 100%; border: 3px solid #111; border-radius: 8px;"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

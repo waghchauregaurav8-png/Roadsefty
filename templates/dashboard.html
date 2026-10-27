@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="section-tag">LIVE ANALYTICS</span>
+        <h1 class="page-title">PUBLIC DATABASE</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="dashboard-kpi-grid">
+            <div class="kpi-card text-center" style="border-top: 5px solid var(--color-blue-safety);">
+                <div class="stat-number">{{ total }}</div>
+                <div class="stat-label">Total Logs</div>
+            </div>
+            <div class="kpi-card text-center" style="border-top: 5px solid var(--color-red-danger);">
+                <div class="stat-number">{{ critical_count }}</div>
+                <div class="stat-label">Critical</div>
+            </div>
+            <div class="kpi-card text-center" style="border-top: 5px solid var(--color-yellow-warning);">
+                <div class="stat-number">{{ high_count }}</div>
+                <div class="stat-label">High</div>
+            </div>
+            <div class="kpi-card text-center" style="border-top: 5px solid var(--color-green-success);">
+                <div class="stat-number">{{ medium_count + low_count }}</div>
+                <div class="stat-label">Medium/Low</div>
+            </div>
+        </div>
+
+        <div class="dashboard-map-wrapper">
+            <label style="font-size:1.2rem;">GEOGRAPHIC HAZARD HEATMAP</label>
+            <div id="dashboardMap" class="dashboard-interactive-map mt-3"></div>
+        </div>
+
+        <div class="reports-container mt-4">
+            
+            <!-- NEW: Flex container for the Title and Export Button -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <label style="font-size:1.2rem; margin: 0;">INCIDENT CATALOG</label>
+                <a href="{{ url_for('export_csv') }}" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; text-decoration: none;">[+] EXPORT TO PWD (CSV)</a>
+            </div>
+
+            {% if reports %}
+            <div class="table-responsive">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Hazard Type</th>
+                            <th>Severity</th>
+                            <th>Description</th>
+                            <th>Date Logged</th>
+                            <th>Verification</th> <!-- NEW COLUMN HEADER -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in reports %}
+                        <tr>
+                            <td><strong>#{{ report.id }}</strong></td>
+                            <td>{{ report.hazard_type }}</td>
+                            <td><span class="severity-pill severity-{{ report.severity | lower }}">{{ report.severity }}</span></td>
+                            <td>{{ report.description }}</td>
+                            <td>{{ report.created_at[:10] }}</td>
+                            
+                            <!-- NEW VERIFICATION DATA CELL -->
+                            <td>
+                                {% if report.upvotes and report.upvotes >= 3 %}
+                                    <span class="severity-pill" style="background: var(--color-green-success); color: #111; font-weight: bold;">VERIFIED ({{ report.upvotes }})</span>
+                                {% else %}
+                                    <span class="severity-pill" style="background: #E5E5E5; color: #111; border: 1px solid #111;">PENDING ({{ report.upvotes|default(0) }})</span>
+                                {% endif %}
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center" style="padding: 2rem; border:var(--border-thick); background:#E5E5E5;">
+                <h3 style="margin:0;">DATABASE EMPTY</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

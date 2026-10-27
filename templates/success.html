@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section" style="padding:8rem 0;">
+    <div class="container text-center" style="max-width:600px;">
+        <div class="success-card">
+            <h1 style="font-size:5rem; margin-bottom:1rem; color:var(--color-green-success);">✅</h1>
+            <h2 style="text-transform:uppercase;">TRANSMISSION SUCCESSFUL</h2>
+            <div class="severity-pill severity-critical mt-3 mb-4" style="font-size:1.2rem;">REPORT ID: #{{ report.id }}</div>
+            <p style="font-weight:700; margin-bottom:2rem;">The hazard data has been synchronized with the public dashboard.</p>
+            <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline">VIEW DATABASE</a>
+                <a href="{{ url_for('report') }}" class="btn btn-primary">SUBMIT ANOTHER</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

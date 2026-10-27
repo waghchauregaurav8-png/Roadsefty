@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header" style="background:var(--color-red-danger);">
+    <div class="container">
+        <span class="section-tag" style="background:#FFF; color:#111;">CRITICAL</span>
+        <h1 class="page-title">EMERGENCY PROTOCOLS</h1>
+    </div>
+</section>
+<section class="section">
+    <div class="container emergency-grid">
+        <div class="emergency-card text-center" style="border-top:5px solid var(--color-blue-safety);">
+            <div class="card-icon-banner">🚔</div>
+            <h3>POLICE / DISPATCH</h3>
+            <a href="tel:112" class="btn btn-primary btn-full mt-3">CALL 112</a>
+        </div>
+        <div class="emergency-card text-center" style="border-top:5px solid var(--color-red-danger);">
+            <div class="card-icon-banner">🚑</div>
+            <h3>MEDICAL TRAUMA</h3>
+            <a href="tel:108" class="btn btn-primary btn-full mt-3" style="background:var(--color-red-danger);">CALL 108</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

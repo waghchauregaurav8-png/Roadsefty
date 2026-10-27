@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="section-tag" style="background:var(--color-purple-accent);">EVALUATION MODULE</span>
+        <h1 class="page-title">AWARENESS QUIZ</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container" style="max-width:800px;">
+        
+        <!-- Pre-Quiz Candidate Details Form -->
+        <div class="form-card" id="quizIntroForm">
+            <h2 style="margin-bottom:1rem; text-transform:uppercase;">CANDIDATE DETAILS</h2>
+            <p style="margin-bottom:2rem; font-weight:600;">Please provide your basic details before starting the evaluation.</p>
+            
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="quizName" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-half">
+                    <label>Email ID *</label>
+                    <input type="email" id="quizEmail" class="form-input" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group col-half">
+                    <label>Phone No. *</label>
+                    <input type="tel" id="quizPhone" class="form-input" placeholder="Enter mobile number" required>
+                </div>
+            </div>
+            
+            <button type="button" id="startQuizBtn" class="btn btn-primary btn-full mt-3">[+] START EVALUATION</button>
+        </div>
+
+        <!-- The Quiz Container -->
+        <div class="quiz-card" id="quizContainer" style="display:none;">
+            <h2 id="questionTitle" style="margin-bottom:2rem;">Loading...</h2>
+            <div id="optionsContainer"></div>
+            <div id="quizFeedback" class="alert-box" style="display:none; margin-top:1.5rem;"></div>
+            <div style="border-top:var(--border-thick); padding-top:1.5rem; margin-top:1.5rem; text-align:right;">
+                <button class="btn btn-primary" id="nextQuestionBtn">NEXT ➔</button>
+            </div>
+        </div>
+        
+        <!-- Final Result Card where Certificate will generate -->
+        <div class="quiz-result-card" id="quizResultCard" style="display:none; padding: 0; background: transparent; border: none; box-shadow: none;"></div>
+        
+    </div>
+</section>
+
+<!-- Required Library for downloading the certificate as an Image -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+{% endblock %}
